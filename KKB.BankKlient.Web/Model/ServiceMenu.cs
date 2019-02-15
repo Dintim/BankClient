@@ -11,11 +11,16 @@ namespace KKB.BankKlient.Web.Model
 {
     public class ServiceMenu
     {
+        private static ServiceUser service=null;
+        static ServiceMenu()
+        {
+            service = new ServiceUser();
+        }
         public static void MainMenu()
         {
             Console.WriteLine("Добро пожаловать в ККБ\n");
             Console.WriteLine("1. Регистрация");
-            Console.WriteLine("2. Выход");
+            Console.WriteLine("2. Вход");
 
             Console.WriteLine(": ");
             int menu = Int32.Parse(Console.ReadLine());
@@ -26,12 +31,13 @@ namespace KKB.BankKlient.Web.Model
             }
             else if (menu==2)
             {
-                
+                LogOnMenu();
             }
 
         }
         public static void AuthorizeUserMenu(User user)
         {
+            Console.Clear();
             Console.WriteLine("Приветствуем вас, {0} {1}", user.FirstName, user.LastName);
             Console.WriteLine("1. Вывод баланса на экран");
             Console.WriteLine("2. Пополнение счета");
@@ -60,7 +66,7 @@ namespace KKB.BankKlient.Web.Model
             Console.Write("Password = ");
             user.Password = Console.ReadLine();
 
-            ServiceUser service = new ServiceUser();
+            
             string message = "";
             if (service.RegisterUser(user, out message))
             {
@@ -74,6 +80,35 @@ namespace KKB.BankKlient.Web.Model
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(message);
                 Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
+
+        public static void LogOnMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("");
+            Console.Write("Login: ");
+            string login = Console.ReadLine();
+
+            Console.Write("Password: ");
+            string password = Console.ReadLine();
+
+            
+            string message = "";
+            User user = service.LogOn(login, password, out message);
+
+            if (user!=null)
+            {
+                AuthorizeUserMenu(user);
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(message);
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Thread.Sleep(3000);
+                LogOnMenu();
             }
         }
     }
