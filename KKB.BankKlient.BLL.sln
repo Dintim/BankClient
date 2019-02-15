@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KKB.BankKlient.BLL", "KKB.BankKlient.BLL\KKB.BankKlient.BLL.csproj", "{155DEFA8-C3D8-4A4F-BF88-C491E6C7C550}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KKB.BankKlient.Web", "KKB.BankKlient.Web\KKB.BankKlient.Web.csproj", "{6101AFE2-F820-4049-955C-DFC6B2EF5360}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{155DEFA8-C3D8-4A4F-BF88-C491E6C7C550}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{155DEFA8-C3D8-4A4F-BF88-C491E6C7C550}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{155DEFA8-C3D8-4A4F-BF88-C491E6C7C550}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{155DEFA8-C3D8-4A4F-BF88-C491E6C7C550}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6101AFE2-F820-4049-955C-DFC6B2EF5360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6101AFE2-F820-4049-955C-DFC6B2EF5360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6101AFE2-F820-4049-955C-DFC6B2EF5360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6101AFE2-F820-4049-955C-DFC6B2EF5360}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4B05F15-589A-4635-A16D-217238C4D52F}
+	EndGlobalSection
+EndGlobal
