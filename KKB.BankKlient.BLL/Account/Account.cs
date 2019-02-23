@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KKB.BankKlient.BLL.Account
 {
-    public enum currency { usd, kzt,rur}
+    public enum currency { usd, kzt, rur }
     public class Account
     {
         public int Id { get; set; }

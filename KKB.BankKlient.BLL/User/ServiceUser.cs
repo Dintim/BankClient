@@ -17,10 +17,12 @@ namespace KKB.BankKlient.BLL.User
                 {
                     using (var db = new LiteDatabase(@"kkb.db"))
                     {
-                        var users = db.GetCollection<User>("Users");                        
+                        var users = db.GetCollection<User>("Users");
+
                         users.Insert(user);
                     }
-                    message = "Регистарция прошла успешно";
+
+                    message = "Регистрация прошла успешно";
                     return true;
                 }
                 catch (Exception ex)
@@ -33,26 +35,32 @@ namespace KKB.BankKlient.BLL.User
             public User LogOn(string login, string password, out string message)
             {
                 User user = null;
+
                 try
                 {
                     using (var db = new LiteDatabase(@"kkb.db"))
                     {
+                        #region Проверка логина и пароля
                         var users = db.GetCollection<User>("Users");
-                        IEnumerable<User> results = users.Find(x => x.Login.Equals(login) && x.Password.Equals(password));
+
+                        IEnumerable<User> results =
+                            users.Find(x => x.Login.Equals(login) &&
+                                            x.Password.Equals(password));
 
                         //есть ли хоть одна запись в массиве results
                         if (results.Any())
                         {
-                            message = "";                            
-                            return results.FirstOrDefault();
+                            message = "";
+                            //первую или null вернет из results
+                            return results.FirstOrDefault(); ;
                         }
                         else
                         {
-                            message = "неправильно ввели логин и пароль";
+                            message = "Неправильно ввели логин или пароль";
                             return user;
                         }
-                    }                    
-                   
+                        #endregion
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -60,7 +68,25 @@ namespace KKB.BankKlient.BLL.User
                     return user;
                 }
             }
+
+            public static bool DeleteUserDB(string name, string surname, out string message)
+            {
+                try
+                {
+                    using (var db = new LiteDatabase(@"kkb.db"))
+                    {
+                        var users = db.GetCollection<User>("Users");
+                        users.Delete(x => x.FirstName.Equals(name) && x.LastName.Equals(surname));
+                    }
+                    message = string.Format("Пользователь {0} {1} удален", name, surname);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    message = ex.Message;
+                    return false;
+                }
+            }
         }
     }
-   
 }
